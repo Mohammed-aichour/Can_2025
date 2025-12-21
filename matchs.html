@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matchs CAN 2025 - Calendrier des matchs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+                    <div class="logo-holder">
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="25" r="25" fill="#C1272D"/>
+                            <circle cx="25" cy="25" r="18" fill="#006233"/>
+                            <path d="M25 10 L30 20 L25 25 L20 20 Z" fill="#FFD700"/>
+                            <circle cx="25" cy="25" r="8" fill="#C1272D"/>
+                            <text x="25" y="28" font-size="10" fill="white" text-anchor="middle" font-weight="bold">CAN</text>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">CAN 2025</span>
+                        <span class="logo-subtitle">Morocco</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Accueil
+                </a>
+                <a href="visa.html" class="nav-link">
+                    <i class="fas fa-passport"></i>
+                    Visa
+                </a>
+                <a href="reservation.html" class="nav-link">
+                    <i class="fas fa-hotel"></i>
+                    Réservation
+                </a>
+                <a href="transport.html" class="nav-link">
+                    <i class="fas fa-bus"></i>
+                    Transport
+                </a>
+                <a href="billetterie.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    Billetterie
+                </a>
+                <a href="matchs.html" class="nav-link active">
+                    <i class="fas fa-futbol"></i>
+                    Matchs
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-dark-mode" id="darkModeToggle" title="Mode sombre">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-login">
+                    <i class="fas fa-user"></i>
+                    Connexion
+                </button>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1><i class="fas fa-futbol"></i> Calendrier des Matchs</h1>
+                <p>Suivez tous les matchs de la CAN 2025 au Maroc</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matchs Section -->
+    <section class="matchs-section">
+        <div class="container">
+            <div class="calendar-container">
+                <div class="calendar-nav">
+                    <button class="calendar-btn" id="prevMonth">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <h3 id="currentMonth">Janvier 2025</h3>
+                    <button class="calendar-btn" id="nextMonth">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be generated dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-holder">
+                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="25" cy="25" r="25" fill="#C1272D"/>
+                                <circle cx="25" cy="25" r="18" fill="#006233"/>
+                                <path d="M25 10 L30 20 L25 25 L20 20 Z" fill="#FFD700"/>
+                                <circle cx="25" cy="25" r="8" fill="#C1272D"/>
+                                <text x="25" y="28" font-size="10" fill="white" text-anchor="middle" font-weight="bold">CAN</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>CAN 2025 Morocco</h4>
+                            <p>Plateforme officielle</p>
+                        </div>
+                    </div>
+                    <p>La Coupe d'Afrique des Nations 2025 au Maroc. Vivez l'expérience du football africain.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="visa.html">Visa</a></li>
+                        <li><a href="billetterie.html">Billetterie</a></li>
+                        <li><a href="reservation.html">Réservation</a></li>
+                        <li><a href="transport.html">Transport</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +212 XXX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> contact@can2025.ma</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Rabat, Maroc</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CAN 2025 Morocco. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport CAN 2025 - Réservation de transport</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" style="display: flex; align-items: center; gap: 15px; text-decoration: none;">
+                    <div class="logo-holder">
+                        <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="25" cy="25" r="25" fill="#C1272D"/>
+                            <circle cx="25" cy="25" r="18" fill="#006233"/>
+                            <path d="M25 10 L30 20 L25 25 L20 20 Z" fill="#FFD700"/>
+                            <circle cx="25" cy="25" r="8" fill="#C1272D"/>
+                            <text x="25" y="28" font-size="10" fill="white" text-anchor="middle" font-weight="bold">CAN</text>
+                        </svg>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-title">CAN 2025</span>
+                        <span class="logo-subtitle">Morocco</span>
+                    </div>
+                </a>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">
+                    <i class="fas fa-home"></i>
+                    Accueil
+                </a>
+                <a href="visa.html" class="nav-link">
+                    <i class="fas fa-passport"></i>
+                    Visa
+                </a>
+                <a href="reservation.html" class="nav-link">
+                    <i class="fas fa-hotel"></i>
+                    Réservation
+                </a>
+                <a href="transport.html" class="nav-link active">
+                    <i class="fas fa-bus"></i>
+                    Transport
+                </a>
+                <a href="billetterie.html" class="nav-link">
+                    <i class="fas fa-ticket-alt"></i>
+                    Billetterie
+                </a>
+                <a href="matchs.html" class="nav-link">
+                    <i class="fas fa-futbol"></i>
+                    Matchs
+                </a>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-dark-mode" id="darkModeToggle" title="Mode sombre">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="btn-login">
+                    <i class="fas fa-user"></i>
+                    Connexion
+                </button>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1><i class="fas fa-bus"></i> Transport & Déplacements</h1>
+                <p>Réservez vos trajets entre les villes hôtes de la CAN 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Transport Section -->
+    <section class="transport-section">
+        <div class="container">
+            <div class="transport-options">
+                <div class="transport-tabs">
+                    <button class="transport-tab active" data-transport="bus">
+                        <i class="fas fa-bus"></i>
+                        Bus
+                    </button>
+                    <button class="transport-tab" data-transport="train">
+                        <i class="fas fa-train"></i>
+                        Train
+                    </button>
+                    <button class="transport-tab" data-transport="shuttle">
+                        <i class="fas fa-shuttle-van"></i>
+                        Navette
+                    </button>
+                </div>
+                <div class="transport-form-container">
+                    <form id="transportForm" class="transport-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Ville de départ *</label>
+                                <select id="transport-from" name="from" required>
+                                    <option value="">Sélectionnez</option>
+                                    <option value="casablanca">Casablanca</option>
+                                    <option value="rabat">Rabat</option>
+                                    <option value="marrakech">Marrakech</option>
+                                    <option value="tanger">Tanger</option>
+                                    <option value="agadir">Agadir</option>
+                                    <option value="fes">Fès</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Ville d'arrivée *</label>
+                                <select id="transport-to" name="to" required>
+                                    <option value="">Sélectionnez</option>
+                                    <option value="casablanca">Casablanca</option>
+                                    <option value="rabat">Rabat</option>
+                                    <option value="marrakech">Marrakech</option>
+                                    <option value="tanger">Tanger</option>
+                                    <option value="agadir">Agadir</option>
+                                    <option value="fes">Fès</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Date de voyage *</label>
+                                <input type="date" id="transport-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre de passagers *</label>
+                                <input type="number" id="transport-passengers" name="passengers" min="1" max="10" value="1" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-search"></i>
+                            Rechercher des trajets
+                        </button>
+                    </form>
+                </div>
+                <div class="transport-results" id="transportResults">
+                    <!-- Transport results will be shown here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <div class="logo-holder">
+                            <svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="25" cy="25" r="25" fill="#C1272D"/>
+                                <circle cx="25" cy="25" r="18" fill="#006233"/>
+                                <path d="M25 10 L30 20 L25 25 L20 20 Z" fill="#FFD700"/>
+                                <circle cx="25" cy="25" r="8" fill="#C1272D"/>
+                                <text x="25" y="28" font-size="10" fill="white" text-anchor="middle" font-weight="bold">CAN</text>
+                            </svg>
+                        </div>
+                        <div>
+                            <h4>CAN 2025 Morocco</h4>
+                            <p>Plateforme officielle</p>
+                        </div>
+                    </div>
+                    <p>La Coupe d'Afrique des Nations 2025 au Maroc. Vivez l'expérience du football africain.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="visa.html">Visa</a></li>
+                        <li><a href="billetterie.html">Billetterie</a></li>
+                        <li><a href="reservation.html">Réservation</a></li>
+                        <li><a href="transport.html">Transport</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Informations</h4>
+                    <ul>
+                        <li><a href="#">À propos</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +212 XXX XXX XXX</li>
+                        <li><i class="fas fa-envelope"></i> contact@can2025.ma</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Rabat, Maroc</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 CAN 2025 Morocco. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
