@@ -23,27 +23,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Active navigation link on scroll
-const sections = document.querySelectorAll('section[id]');
+// Navigation active link detection
 const navLinks = document.querySelectorAll('.nav-link');
+const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 
-window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinks.forEach(link => {
+navLinks.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href === currentPath || (currentPath === '' && href === 'index.html')) {
+        link.classList.add('active');
+    } else if (href && !href.startsWith('#') && href !== currentPath) {
         link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+    }
+});
+
+// Scroll spy for index.html sections
+const sections = document.querySelectorAll('section[id]');
+if (sections.length > 0 && (currentPath === 'index.html' || currentPath === '')) {
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            if (window.scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        if (current) {
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === `#${current}` || link.getAttribute('href') === `index.html#${current}`) {
+                    link.classList.add('active');
+                } else if (link.getAttribute('href')?.startsWith('#')) {
+                    link.classList.remove('active');
+                }
+            });
         }
     });
-});
+}
 
 // Visa Form
 const visaForm = document.getElementById('visaForm');
@@ -62,7 +77,22 @@ if (visaForm) {
             return;
         }
 
-        // Simulate form submission
+        // Persist visa application in LocalStorage
+        try {
+            const savedVisas = JSON.parse(localStorage.getItem('can2025_visas') || '[]');
+            savedVisas.push({
+                id: 'VISA-' + Date.now().toString(36).toUpperCase(),
+                nationality: data.nationality,
+                name: `${data.firstname} ${data.lastname}`,
+                email: data.email,
+                passport: data.passport,
+                submissionDate: new Date().toISOString()
+            });
+            localStorage.setItem('can2025_visas', JSON.stringify(savedVisas));
+        } catch (err) {
+            console.warn('LocalStorage error:', err);
+        }
+
         showModal(
             'Demande soumise avec succès !',
             `Votre demande de visa a été enregistrée. Vous recevrez une confirmation par email à ${data.email} dans les 24-48 heures.`,
@@ -295,6 +325,25 @@ function buyTicket(matchId) {
 
     const total = match.price * parseInt(quantity);
     
+    try {
+        const savedTickets = JSON.parse(localStorage.getItem('can2025_tickets') || '[]');
+        savedTickets.push({
+            id: 'TICKET-' + Date.now().toString(36).toUpperCase(),
+            matchId: match.id,
+            match: `${match.team1} vs ${match.team2}`,
+            quantity: parseInt(quantity),
+            total,
+            date: match.date,
+            time: match.time,
+            stadium: match.stadium,
+            city: match.city,
+            boughtAt: new Date().toISOString()
+        });
+        localStorage.setItem('can2025_tickets', JSON.stringify(savedTickets));
+    } catch (err) {
+        console.warn('LocalStorage error:', err);
+    }
+    
     showModal(
         'Billet ajouté au panier !',
         `Vous avez ajouté ${quantity} billet(s) pour ${match.team1} vs ${match.team2}.\n\nTotal: ${total} MAD\n\nDate: ${formatDate(match.date)} à ${match.time}\nLieu: ${match.stadium}, ${match.city}`,
@@ -431,6 +480,21 @@ function bookHotel(hotelId) {
     const hotel = hotelsData.find(h => h.id === hotelId);
     if (!hotel) return;
 
+    try {
+        const saved = JSON.parse(localStorage.getItem('can2025_hotels') || '[]');
+        saved.push({
+            id: 'HTL-' + Date.now().toString(36).toUpperCase(),
+            hotelId: hotel.id,
+            hotelName: hotel.name,
+            city: hotel.city,
+            price: hotel.price,
+            bookedAt: new Date().toISOString()
+        });
+        localStorage.setItem('can2025_hotels', JSON.stringify(saved));
+    } catch (err) {
+        console.warn('LocalStorage error:', err);
+    }
+
     showModal(
         'Réservation effectuée !',
         `Votre réservation à l'${hotel.name} a été confirmée.\n\nVous recevrez un email de confirmation avec tous les détails.\n\nPrix: ${hotel.price} MAD par nuit`,
@@ -537,6 +601,18 @@ function capitalizeFirst(str) {
 
 // Book Transport
 function bookTransport(from, to, date, time, type, price) {
+    try {
+        const saved = JSON.parse(localStorage.getItem('can2025_transports') || '[]');
+        saved.push({
+            id: 'TR-' + Date.now().toString(36).toUpperCase(),
+            from, to, date, time, type, price,
+            bookedAt: new Date().toISOString()
+        });
+        localStorage.setItem('can2025_transports', JSON.stringify(saved));
+    } catch (err) {
+        console.warn('LocalStorage error:', err);
+    }
+
     showModal(
         'Transport réservé !',
         `Votre réservation de transport a été confirmée.\n\nTrajet: ${capitalizeFirst(from)} → ${capitalizeFirst(to)}\nDate: ${formatDate(date)}\nHeure: ${time}\nType: ${type}\nPrix: ${price} MAD\n\nVous recevrez un email de confirmation.`,
