@@ -8,6 +8,10 @@
 [![FontAwesome](https://img.shields.io/badge/FontAwesome-6.4-528DD7?logo=font-awesome&logoColor=white)](https://fontawesome.com/)
 [![Deployment](https://img.shields.io/badge/Deployment-GitHub_Pages-brightgreen?logo=github)](https://mohammed-aichour.github.io/Can_2025/)
 
+<p align="center">
+  <img src="screenshots/can_2025_preview.png" alt="Aperçu CAN 2025 Morocco" width="100%">
+</p>
+
 ---
 
 ## ⚽ Présentation du Projet
