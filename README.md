@@ -46,6 +46,26 @@ Elle centralise l'ensemble des services nécessaires pour préparer son séjour 
 
 ---
 
+## 🗺️ Architecture de Navigation & Flux Données
+
+```mermaid
+flowchart TD
+    Index["Accueil (index.html)<br>Compte à rebours & Villes Hôtes"] --> Billetterie["Billetterie (billetterie.html)<br>Catégories & Panier interactif"]
+    Index --> Matchs["Matchs (matchs.html)<br>Calendrier & Filtres Stades"]
+    Index --> Visa["Assistance Visa (visa.html)<br>Formulaire interactif sécurisé"]
+    Index --> Reservation["Hébergement (reservation.html)<br>Hôtels & Résidences partenaires"]
+    Index --> Transport["Transports (transport.html)<br>Lignes Al Boraq & Navettes"]
+
+    Billetterie --> LS1["Stockage Local : can2025_tickets"]
+    Visa --> LS2["Stockage Local : can2025_visas"]
+    Reservation --> LS3["Stockage Local : can2025_hotels"]
+    Transport --> LS4["Stockage Local : can2025_transports"]
+
+    Theme["Contrôleur de Thème Sombre / Clair (script.js)"] -. "Persistance d'état" .-> LS5["LocalStorage : can2025_theme"]
+```
+
+---
+
 ## 🛠️ Stack Technique
 
 * **Front-End** : HTML5 sémantique, CSS3 (mise en page responsive, design inspiré des couleurs nationales marocaines, variables CSS).
